@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Logs
+log/*
+tmp/*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage reports
+coverage
+
+# Node modules
+node_modules
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database
+*.sqlite3
+*.db
+
+# Assets
+public/assets
+public/packs
+public/packs-test
