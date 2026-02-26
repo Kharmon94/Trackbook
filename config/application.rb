@@ -24,7 +24,8 @@ module CodespacesTryRails
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Allow requests from GitHub Codespaces
-    config.hosts << "scaling-couscous-vpq5wxpj9w53p9jj-3000.app.github.dev"
+    # Allow requests from GitHub Codespaces (they vary per session)
+    # Using a regex to match any <name>-3000.app.github.dev hostname.
+    config.hosts << /\A.*-3000\.app\.github\.dev\z/
   end
 end
