@@ -1,0 +1,9 @@
+one:
+  email: admin@example.com
+  encrypted_password: <%= User.first&.encrypted_password %>
+  admin: true
+
+two:
+  email: user@example.com
+  encrypted_password: <%= User.first&.encrypted_password %>
+  admin: false

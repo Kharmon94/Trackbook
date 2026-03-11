@@ -76,7 +76,14 @@ group :test do
   gem "webdrivers"
 end
 
+# Authorization library used by controllers and tests in every environment
+gem "cancancan", "~> 3.0"
+
 group :production do
   # Use PostgreSQL in production
   gem "pg"
+
+  # Active Storage needs the AWS SDK in production when using S3.
+  # Rails lazily requires the gem so we mark it as `require: false`.
+  gem "aws-sdk-s3", require: false
 end

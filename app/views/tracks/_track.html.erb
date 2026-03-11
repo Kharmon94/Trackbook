@@ -1,0 +1,74 @@
+<div id="<%= dom_id track %>">
+  <p>
+    <strong>Project:</strong>
+    <%= track.project.try(:name) %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= track.title %>
+  </p>
+
+  <p>
+    <strong>Track number:</strong>
+    <%= track.track_number %>
+  </p>
+
+  <p>
+    <strong>Main artist:</strong>
+    <%= track.main_artist %>
+  </p>
+
+  <p>
+    <strong>Featured artists:</strong>
+    <%= track.featured_artists %>
+  </p>
+
+  <p>
+    <strong>Producers:</strong>
+    <%= track.producers %>
+  </p>
+
+  <p>
+    <strong>Hook chorus bridge:</strong>
+    <%= track.hook_chorus_bridge %>
+  </p>
+
+  <p>
+    <strong>Verses:</strong>
+    <%= track.verses %>
+  </p>
+
+  <p>
+    <strong>Video concept:</strong>
+    <%= track.video_concept %>
+  </p>
+
+  <p>
+    <strong>Videographer:</strong>
+    <%= track.videographer %>
+  </p>
+
+  <p>
+    <strong>Director:</strong>
+    <%= track.director %>
+  </p>
+
+  <p>
+    <strong>Marketing plan:</strong>
+    <%= track.marketing_plan %>
+  </p>
+
+  <p>
+    <strong>Main concept:</strong>
+    <%= track.main_concept %>
+  </p>
+
+  <% if track.cover_art.attached? %>
+    <p><strong>Cover art:</strong> <%= image_tag(track.cover_art) %></p>
+  <% end %>
+  <% if track.sketch.attached? %>
+    <p><strong>Sketch:</strong> <%= image_tag(track.sketch) %></p>
+  <% end %>
+
+</div>

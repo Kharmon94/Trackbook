@@ -42,7 +42,68 @@ Local disk storage is used in development and test (`config/storage.yml` contain
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
-- `AWS_REGION` (defaults to `us-east-1`)
+- `AWS_REGION` (defaults to `us-east-1` if unset)
 - `AWS_BUCKET`
 
+You can alternatively store credentials using `bin/rails credentials:edit` and
+reference them in `config/storage.yml` (the example configuration already
+reads from `ENV` for convenience).
+
 Uploads will then be stored in the specified S3 bucket. You may override the service at runtime with `ENV["ACTIVE_STORAGE_SERVICE"]` if you want to test alternatives.
+
+## Authorization (CanCanCan)
+
+This project uses [CanCanCan](https://github.com/CanCanCommunity/cancancan) for role-based access control (RBAC). The gem is included in the main `Gemfile`.
+
+### Roles
+
+The `User` model has an `admin` boolean column (added via migration `add_admin_to_users`). Call the `admin?` method to check if a user has administrative privileges.
+
+### Default abilities
+
+The `Ability` class (`app/models/ability.rb`) defines the following default permissions:
+
+- **Admins** (`user.admin? == true`): can manage everything (`:manage, :all`).
+- **Authenticated users**: can read most resources and update/read their own user profile.
+- **Guests** (not logged in): can read public content.
+
+### Usage in controllers
+
+CanCanCan integrates with `ApplicationController` via the `include CanCan::ControllerAdditions` mixin. You can:
+
+1. **Automatically load and authorize resources** (recommended):
+   ```ruby
+   class PostsController < ApplicationController
+     load_and_authorize_resource
+   end
+   ```
+
+2. **Manually authorize actions**:
+   ```ruby
+   authorize!(:read, @post)
+   authorize!(:destroy, @post)
+   ```
+
+3. **Check abilities in views**:
+   ```erb
+   <% if can?(:edit, @post) %>
+     <%= link_to "Edit", edit_post_path(@post) %>
+   <% end %>
+   ```
+
+### Access denied handling
+
+When a user tries to access a resource they don't have permission for, `CanCan::AccessDenied` is rescued in `ApplicationController` and the user is redirected to the root path with an alert message.
+
+### Making a user an admin
+
+Currently you can set a user to admin via the Rails console or a migration:
+
+```ruby
+# In rails console
+user = User.find(1)
+user.update(admin: true)
+```
+
+Expand the `Ability` class to add more nuanced rules as your application grows!
+
