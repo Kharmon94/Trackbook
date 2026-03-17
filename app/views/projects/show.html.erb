@@ -1,18 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
 
 <%= render @project %>
 
 <h2>Tracks</h2>
-<%= link_to "New track", new_track_path(track: { project_id: @project.id }) %>
-<ul>
+<p><%= link_to "New track", new_track_path(track: { project_id: @project.id }), class: "btn btn-primary mb-2" %></p>
+<ul class="list-group mb-3">
   <% @project.tracks.each do |track| %>
-    <li><%= link_to track.title.presence || "(untitled)", track %></li>
+    <li class="list-group-item">
+      <%= link_to track.title.presence || "(untitled)", track %>
+    </li>
   <% end %>
 </ul>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete %>
+<div class="btn-group" role="group">
+  <%= link_to "Edit this project", edit_project_path(@project), class: "btn btn-secondary" %>
+  <%= link_to "Back to projects", projects_path, class: "btn btn-outline-secondary" %>
+  <%= button_to "Destroy this project", @project, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
 </div>

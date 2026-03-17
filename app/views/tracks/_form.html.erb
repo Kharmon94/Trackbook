@@ -1,8 +1,7 @@
-<%= form_with(model: track) do |form| %>
+<%= form_with(model: track, html: {class: "container"}) do |form| %>
   <% if track.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(track.errors.count, "error") %> prohibited this track from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4><%= pluralize(track.errors.count, "error") %> prohibited this track from being saved:</h4>
       <ul>
         <% track.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,82 +10,82 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :project_id, "Project", style: "display: block" %>
-    <%= form.collection_select :project_id, current_user.projects, :id, :name, include_blank: true %>
+  <div class="mb-3">
+    <%= form.label :project_id, "Project", class: "form-label" %>
+    <%= form.collection_select :project_id, current_user.projects, :id, :name, {include_blank: true}, {class: "form-select"} %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :track_number, class: "form-label" %>
+    <%= form.number_field :track_number, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :main_artist, class: "form-label" %>
+    <%= form.text_field :main_artist, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :featured_artists, class: "form-label" %>
+    <%= form.textarea :featured_artists, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :producers, class: "form-label" %>
+    <%= form.textarea :producers, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :hook_chorus_bridge, class: "form-label" %>
+    <%= form.textarea :hook_chorus_bridge, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :verses, class: "form-label" %>
+    <%= form.textarea :verses, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :video_concept, class: "form-label" %>
+    <%= form.textarea :video_concept, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :videographer, class: "form-label" %>
+    <%= form.text_field :videographer, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :director, class: "form-label" %>
+    <%= form.text_field :director, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :marketing_plan, class: "form-label" %>
+    <%= form.textarea :marketing_plan, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :main_concept, class: "form-label" %>
+    <%= form.textarea :main_concept, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :cover_art, class: "form-label" %>
+    <%= form.file_field :cover_art, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :sketch, class: "form-label" %>
+    <%= form.file_field :sketch, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :track_number, style: "display: block" %>
-    <%= form.number_field :track_number %>
-  </div>
-
-  <div>
-    <%= form.label :main_artist, style: "display: block" %>
-    <%= form.text_field :main_artist %>
-  </div>
-
-  <div>
-    <%= form.label :featured_artists, style: "display: block" %>
-    <%= form.textarea :featured_artists %>
-  </div>
-
-  <div>
-    <%= form.label :producers, style: "display: block" %>
-    <%= form.textarea :producers %>
-  </div>
-
-  <div>
-    <%= form.label :hook_chorus_bridge, style: "display: block" %>
-    <%= form.textarea :hook_chorus_bridge %>
-  </div>
-
-  <div>
-    <%= form.label :verses, style: "display: block" %>
-    <%= form.textarea :verses %>
-  </div>
-
-  <div>
-    <%= form.label :video_concept, style: "display: block" %>
-    <%= form.textarea :video_concept %>
-  </div>
-
-  <div>
-    <%= form.label :videographer, style: "display: block" %>
-    <%= form.text_field :videographer %>
-  </div>
-
-  <div>
-    <%= form.label :director, style: "display: block" %>
-    <%= form.text_field :director %>
-  </div>
-
-  <div>
-    <%= form.label :marketing_plan, style: "display: block" %>
-    <%= form.textarea :marketing_plan %>
-  </div>
-
-  <div>
-    <%= form.label :main_concept, style: "display: block" %>
-    <%= form.textarea :main_concept %>
-  </div>
-
-  <div>
-    <%= form.label :cover_art, style: "display: block" %>
-    <%= form.file_field :cover_art %>
-  </div>
-
-  <div>
-    <%= form.label :sketch, style: "display: block" %>
-    <%= form.file_field :sketch %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Save Track", class: "btn btn-primary" %>
   </div>
 <% end %>

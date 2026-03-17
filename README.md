@@ -1,4 +1,12 @@
-# GitHub Codespaces ♥️ Ruby on Rails
+# Trackbook Application
+
+This Rails application serves as a digital companion to the physical "Trackbook" workbook that artists use to plan, write and develop music projects. Users can create **projects** and add an unlimited number of **tracks** to each project, with fields mirroring the pages of the original book (title, artists, producers, hooks, verses, concept notes, cover art, etc.).
+
+The app supports user authentication (Devise), authorization (CanCanCan), and file attachments via Active Storage. Bootstrap is integrated for responsive layout and styling via importmap.
+
+Feel free to adapt or extend the schema and views to match the requirements of your creative workflow.
+
+---
 
 Welcome to your shiny new Codespace running Rails! We've got everything fired up and running for you to explore Rails.
 

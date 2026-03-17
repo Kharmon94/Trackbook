@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   include CanCan::ControllerAdditions
 
+  # In development, GitHub Codespaces origin checking can conflict with localhost testing
+  skip_forgery_protection if Rails.env.development?
+
   # allow additional parameters through Devise controllers if needed
   before_action :configure_permitted_parameters, if: :devise_controller?
 
